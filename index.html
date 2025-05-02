@@ -1,52 +1,94 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- displays site properly based on user's device -->
+  <head>
+    <meta charset="UTF-8" />
+    <!-- displays site properly based on user's device -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-  <link rel="icon" type="image/png" sizes="32x32" href="./assets/images/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="./assets/images/favicon-32x32.png" />
 
-  <title>Frontend Mentor | Contact form</title>
+    <title>Frontend Mentor | Contact form</title>
 
-  <!-- Feel free to remove these styles or customise in your own stylesheet 👍 -->
-  <style>
-    .attribution { font-size: 11px; text-align: center; }
-    .attribution a { color: hsl(228, 45%, 44%); }
-  </style>
-</head>
-<body>
-
-  Contact Us
-
-  First Name
-  This field is required
-
-  Last Name
-  This field is required
-
-  Email Address
-  Please enter a valid email address
-  This field is required
-
-  Query Type
-  General Enquiry
-  Support Request
-  Please select a query type
-
-  Message
-  This field is required
-
-  I consent to being contacted by the team
-  To submit this form, please consent to being contacted
-
-  Submit
-
-  Message Sent!
-  Thanks for completing the form. We'll be in touch soon!
-
-  <div class="attribution">
-    Challenge by <a href="https://www.frontendmentor.io?ref=challenge">Frontend Mentor</a>.
-    Coded by <a href="#">Your Name Here</a>.
-  </div>
-</body>
+    <style>
+      .attribution {
+        font-size: 11px;
+        text-align: center;
+      }
+      .attribution a {
+        color: hsl(228, 45%, 44%);
+      }
+    </style>
+  </head>
+  <body>
+    <main>
+      <form>
+        <h1>Contact Us</h1>
+        <div class="name-container">
+          <div class="first-name-container">
+            <div class="label-container">
+              <label for="first-name">First Name *</label>
+            </div>
+            <input id="first-name" type="text" name="first-name" />
+            <p class="name-error-text">This field is required</p>
+          </div>
+          <div class="last-name-container">
+            <div class="label-container">
+              <label for="last-name">Last Name *</label>
+            </div>
+            <input id="last-name" type="text" name="first-name" />
+            <p class="name-error-text">This field is required</p>
+          </div>
+        </div>
+        <div class="email-address-container">
+          <div class="label-container">
+            <label for="email-address">Email Address *</label>
+          </div>
+          <input id="email-address" type="email" name="email" />
+          <p class="email-error-text">Please enter a valid email address</p>
+        </div>
+        <div class="query-type-container">
+          <div class="label-container">
+            <label>Query Type *</label>
+          </div>
+          <div class="query-option">
+            <input type="radio" name="general-enquiry" id="general-enquiry" />
+            <label for="general-enquiry">General Enquiry</label>
+          </div>
+          <div class="query-option">
+            <input type="radio" name="support-request" id="support-request" />
+            <label for="support-request">Support Request</label>
+          </div>
+          <p class="query-error-text">Please select a query type</p>
+        </div>
+        <div class="message-container">
+          <div class="label-container">
+            <label for="text-area">Message *</label>
+          </div>
+          <textarea id="text-area"></textarea>
+          <p class="message-error-text">This field is required</p>
+        </div>
+        <div class="consent-container">
+          <input type="checkbox" /> <span>I consent to being contacted by the team *</span>
+          <p class="consent-error-text">To submit this form, please consent to being contacted</p>
+        </div>
+        <div class="submit-container">
+          <input type="submit" value="Submit" />
+        </div>
+      </form>
+      <div class="success-message-container" style="display: none">
+        <div class="success-info">
+          <img src="#" alt="success check" />
+          <p>Message Sent!</p>
+        </div>
+        <p class="success-message">Thanks for completing the form. We'll be in touch soon!</p>
+      </div>
+    </main>
+    <footer>
+      <div class="attribution">
+        Challenge by <a href="https://www.frontendmentor.io?ref=challenge" target="_blank"><b>Frontend Mentor</b></a
+        >. Coded by <a href="https://github.com/Tonye-Onuoha"><b>Tonye Hugo Onuoha</b></a
+        >.
+      </div>
+    </footer>
+  </body>
 </html>
