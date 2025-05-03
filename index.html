@@ -12,7 +12,13 @@
     <title>Frontend Mentor | Contact form</title>
 
     <style>
+      @font-face {
+        font-family: Karla;
+        src: url("./assets/fonts/Karla-VariableFont_wght.ttf");
+      }
       .attribution {
+        font-family: Karla;
+        font-weight: 400;
         font-size: 11px;
         text-align: center;
       }
@@ -23,54 +29,57 @@
   </head>
   <body>
     <main>
-      <form>
-        <h1>Contact Us</h1>
+      <form id="form">
+        <h1 class="title">Contact Us</h1>
         <div class="name-container">
           <div class="first-name-container">
             <div class="label-container">
-              <label for="first-name">First Name *</label>
+              <label for="first-name">First Name <span class="asterix">*</span></label>
             </div>
-            <input id="first-name" type="text" name="first-name" />
-            <p class="name-error-text">This field is required</p>
+            <input id="first-name" type="text" name="first-name" required />
+            <p class="first-name-error-text">This field is required</p>
           </div>
           <div class="last-name-container">
             <div class="label-container">
-              <label for="last-name">Last Name *</label>
+              <label for="last-name">Last Name <span class="asterix">*</span></label>
             </div>
-            <input id="last-name" type="text" name="first-name" />
-            <p class="name-error-text">This field is required</p>
+            <input id="last-name" type="text" name="last-name" />
+            <p class="last-name-error-text">This field is required</p>
           </div>
         </div>
         <div class="email-address-container">
           <div class="label-container">
-            <label for="email-address">Email Address *</label>
+            <label for="email-address">Email Address <span class="asterix">*</span></label>
           </div>
           <input id="email-address" type="email" name="email" />
           <p class="email-error-text">Please enter a valid email address</p>
         </div>
         <div class="query-type-container">
           <div class="label-container">
-            <label>Query Type *</label>
+            <label>Query Type <span class="asterix">*</span></label>
           </div>
           <div class="query-option">
-            <input type="radio" name="general-enquiry" id="general-enquiry" />
+            <input type="radio" name="query-type" value="general-enquiry" id="general-enquiry" />
             <label for="general-enquiry">General Enquiry</label>
           </div>
           <div class="query-option">
-            <input type="radio" name="support-request" id="support-request" />
+            <input type="radio" name="query-type" value="support-request" id="support-request" />
             <label for="support-request">Support Request</label>
           </div>
           <p class="query-error-text">Please select a query type</p>
         </div>
         <div class="message-container">
           <div class="label-container">
-            <label for="text-area">Message *</label>
+            <label for="text-area">Message <span class="asterix">*</span></label>
           </div>
-          <textarea id="text-area"></textarea>
+          <textarea id="text-area" name="message"></textarea>
           <p class="message-error-text">This field is required</p>
         </div>
         <div class="consent-container">
-          <input type="checkbox" /> <span>I consent to being contacted by the team *</span>
+          <div class="consent-input">
+            <input type="checkbox" />
+            <span>I consent to being contacted by the team <span class="asterix">*</span></span>
+          </div>
           <p class="consent-error-text">To submit this form, please consent to being contacted</p>
         </div>
         <div class="submit-container">
