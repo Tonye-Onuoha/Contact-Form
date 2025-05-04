@@ -29,22 +29,22 @@
   </head>
   <body>
     <main>
-      <form id="form">
+      <form id="form" novalidate>
         <h1 class="title">Contact Us</h1>
         <div class="name-container">
           <div class="first-name-container">
             <div class="label-container">
               <label for="first-name">First Name <span class="asterix">*</span></label>
             </div>
-            <input id="first-name" type="text" name="first-name" required />
-            <p class="first-name-error-text">This field is required</p>
+            <input id="first-name" type="text" name="first-name" />
+            <p id="first-name-error-text" style="display: none">First Name Error Text</p>
           </div>
           <div class="last-name-container">
             <div class="label-container">
               <label for="last-name">Last Name <span class="asterix">*</span></label>
             </div>
             <input id="last-name" type="text" name="last-name" />
-            <p class="last-name-error-text">This field is required</p>
+            <p id="last-name-error-text" style="display: none">Last Name Error Text</p>
           </div>
         </div>
         <div class="email-address-container">
@@ -52,7 +52,7 @@
             <label for="email-address">Email Address <span class="asterix">*</span></label>
           </div>
           <input id="email-address" type="email" name="email" />
-          <p class="email-error-text">Please enter a valid email address</p>
+          <p id="email-error-text" style="display: none">Email Error Text</p>
         </div>
         <div class="query-type-container">
           <div class="label-container">
@@ -68,27 +68,27 @@
               <label for="support-request">Support Request</label>
             </div>
           </div>
-          <p class="query-error-text">Please select a query type</p>
+          <p id="query-error-text" style="display: none">Query Type Error Text</p>
         </div>
         <div class="message-container">
           <div class="label-container">
-            <label for="text-area">Message <span class="asterix">*</span></label>
+            <label for="message">Message <span class="asterix">*</span></label>
           </div>
-          <textarea id="text-area" name="message"></textarea>
-          <p class="message-error-text">This field is required</p>
+          <textarea id="message" name="message"></textarea>
+          <p id="message-error-text" style="display: none">Message Error Text</p>
         </div>
         <div class="consent-container">
           <div class="consent-input">
-            <input type="checkbox" />
-            <span>I consent to being contacted by the team <span class="asterix">*</span></span>
+            <input type="checkbox" id="consent" name="consent" />
+            <label for="consent">I consent to being contacted by the team <span class="asterix">*</span></label>
           </div>
-          <p class="consent-error-text">To submit this form, please consent to being contacted</p>
+          <p id="consent-error-text" style="display: none">Consent Error Text</p>
         </div>
         <div class="submit-container">
           <input type="submit" value="Submit" />
         </div>
       </form>
-      <div class="success-message-container" style="display: none">
+      <div id="success-message-container" style="display: none">
         <div class="success-info">
           <img src="assets/images/icon-success-check.svg" alt="success check" />
           <p>Message Sent!</p>
@@ -103,5 +103,6 @@
         >.
       </div>
     </footer>
+    <script src="js/contact-form.js"></script>
   </body>
 </html>
