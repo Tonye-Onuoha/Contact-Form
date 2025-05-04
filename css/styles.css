@@ -95,7 +95,7 @@ input[type="checkbox"] {
     border-radius: 7.5px;
 }
 
-#text-area {
+#message {
     width: 100%;
     height: 200px;
     padding: 10px 20px;
@@ -126,13 +126,13 @@ input[type="submit"] {
     color: hsl(169, 82%, 27%);
 }
 
-.first-name-error-text,
-.last-name-error-text,
-.email-error-text,
-.query-error-text,
-.message-error-text,
-.consent-error-text {
-    display: none;
+#first-name-error-text,
+#last-name-error-text,
+#email-error-text,
+#query-error-text,
+#message-error-text,
+#consent-error-text {
+    color: hsl(0, 66%, 54%);
 }
 
 /* HOVER STATE */
@@ -155,7 +155,7 @@ label[for="support-request"] {
     cursor: pointer;
 }
 
-/* FOCUS STATE */
+/* FOCUS AND ACTIVE STATE */
 
 input#first-name:focus,
 input#last-name:focus,
@@ -165,9 +165,14 @@ input#email-address:focus,
     outline: none;
 }
 
+input[type="checkbox"]:active,
+label[for="consent"]:active {
+    cursor: pointer;
+}
+
 /* SUCCESS-MESSAGE */
 
-.success-message-container {
+#success-message-container {
     width: fit-content;
     position: absolute;
     top: 5px;
@@ -195,13 +200,14 @@ input#email-address:focus,
 @media screen and (min-width: 800px) {
     form {
         max-width: 720px;
+        padding: 35px;
     }
     .name-container,
     .query-options-container {
         flex-direction: row;
         gap: 15px;
     }
-    #text-area {
+    #message {
         height: 100px;
     }
     .success-message-container {
