@@ -13,10 +13,8 @@ const messageErrorText = document.getElementById("message-error-text");
 const checkboxInput = document.querySelector("input[type='checkbox']");
 const checkboxInputErrorText = document.getElementById("consent-error-text");
 const successMessage = document.getElementById("success-message-container");
-// initialize empty errors-object.
-const errorsObject = {};
 // selected query-type defaults to false.
-let selectedQuery = false;
+let queryIsSelected = false;
 
 // This function determines if an input value is empty.
 const inputNotEmpty = (value) => value.trim().length > 0;
@@ -30,11 +28,12 @@ const isValidEmail = (value) => {
 
 // This function sets the styling of the selected query-type.
 const selectQueryType = (index) => {
-    if (selectedQuery) resetQueryType();
+    if (queryOptionsErrorText.style.display == "block") queryOptionsErrorText.style.display = "none";
+    if (queryIsSelected) resetQueryType();
     const optionContainer = queryOptionsContainer[index];
     optionContainer.style.backgroundColor = "lightgray";
     optionContainer.style.border = "1px solid hsl(169, 82%, 27%)";
-    selectedQuery = true;
+    queryIsSelected = true;
 };
 
 // This function resets the styling of the selected query-type.
@@ -42,7 +41,20 @@ const resetQueryType = () => {
     const selectedQueryType = queryOptionsContainer.find((container) => container.style.backgroundColor == "lightgray");
     selectedQueryType.style.backgroundColor = "";
     selectedQueryType.style.border = "1px solid hsl(186, 15%, 59%)";
-    selectedQuery = false;
+    queryIsSelected = false;
+};
+
+// This function handles the different inputs based on certain events.
+const inputHandler = (errorText, e) => {
+    if (e.currentTarget.type == "text" || e.currentTarget.type == "email" || e.currentTarget.type == "textarea") {
+        if (inputNotEmpty(e.currentTarget.value) && e.currentTarget.style.border == "1px solid rgb(215, 60, 60)") {
+            e.currentTarget.style.border = "1px solid hsl(186, 15%, 59%)";
+            errorText.style.display = "none";
+        }
+    }
+    if (e.currentTarget.type == "checkbox" && e.currentTarget.checked && errorText.style.display == "block") {
+        errorText.style.display = "none";
+    }
 };
 
 // This function displays the success message to the screen if the form data is valid.
@@ -89,7 +101,7 @@ function handleErrorMessages(errorsObject) {
 }
 
 // This function checks the validity of the form data.
-function handleInputData(key, value) {
+function handleInputData(key, value, errorsObject) {
     if ((key == "first-name" || key == "last-name" || key == "email" || key == "message") && !inputNotEmpty(value)) {
         handleErrorObject("This field is required", key, errorsObject);
         return;
@@ -101,9 +113,9 @@ function handleInputData(key, value) {
 }
 
 // This function returns true if the form-data is valid, otherwise it returns false.
-function dataIsValid(data) {
+function dataIsValid(data, errorsObject) {
     Object.keys(data).forEach((key) => {
-        handleInputData(key, data[key]);
+        handleInputData(key, data[key], errorsObject);
     });
     const isValid = Object.keys(errorsObject).length === 0;
 
@@ -118,6 +130,8 @@ const handleFormSubmit = (e) => {
     const formData = new FormData(e.currentTarget);
     // convert the form data entries into an object.
     const data = Object.fromEntries(formData);
+    // initialize empty errors-object.
+    const errorsObject = {};
     // handle checkbox error if checkbox is not checked.
     if (!checkboxInput.checked) {
         handleErrorObject("To submit this form, please consent to being contacted", "consent", errorsObject);
@@ -125,12 +139,22 @@ const handleFormSubmit = (e) => {
     // handle radio-button error if none is clicked.
     if (!("query-type" in data)) handleErrorObject("Please select a query type", "query-type", errorsObject);
     // check if data is valid and return error-messages if invalid.
-    if (!dataIsValid(data)) handleErrorMessages(errorsObject);
+    if (!dataIsValid(data, errorsObject)) handleErrorMessages(errorsObject);
     // else show success-message.
     else showSuccessMessage();
 };
 
 /* Event Listeners */
+
+firstNameInput.addEventListener("keyup", inputHandler.bind(null, firstNameErrorText));
+
+lastNameInput.addEventListener("keyup", inputHandler.bind(null, lastNameErrorText));
+
+emailInput.addEventListener("keyup", inputHandler.bind(null, emailErrorText));
+
+messageInput.addEventListener("keyup", inputHandler.bind(null, messageErrorText));
+
+checkboxInput.addEventListener("click", inputHandler.bind(null, checkboxInputErrorText));
 
 queryOptions.forEach((option, index) => option.addEventListener("focus", selectQueryType.bind(null, index)));
 
